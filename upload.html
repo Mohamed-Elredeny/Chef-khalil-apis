@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form  action="interfaces/videos.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="sortpicture" id="sortpicture">
+        <input type="button" id="upload" name="upload" value="upload">
+    </form>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $("#upload").on("click", function() {
+        var file_data = $("#sortpicture").prop("files")[0];
+        var form_data = new FormData();
+        form_data.append("file", file_data);
+        console.log(form_data);
+        $.ajax({
+            url: "upload.php",
+            dataType: 'script',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(){
+                alert("works");
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,100 @@
+<!--
+<input type="hidden" id="id" value="123">
+-->
+<input type="hidden" id="id" value="08AB0B38-2F57-095A-6A70-7A0F3B59F22B">
+View Record<input type="submit" id="viewRecord" name="viewRecord" value="Submit">
+<br>
+View all records<input type="submit" id="viewAllRecords" name="viewAllRecords" value="Submit">
+<br>
+Upload
+<form method="post"  enctype="multipart/form-data">
+    <input type="file" name="VideoUrl" id="VideoUrl" required>
+    <input type="button" id="Upload" name="Upload" value="Upload">
+</form>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //To Select all records from database just call this function
+        //must have button called viewAllRecords
+        function viewAllRecords() {
+            var images=[];
+            $('#viewAllRecords').click(function () {
+                var url = "http://localhost/Laravel/Startup/WeWork/Cheaf%20Khalil/videos/interfaces/videos.php";
+                var formData = {'viewAllRecords': 'viewAllRecords'};
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    dataType: 'JSON',
+                    encode: true,
+                    error: function () {
+                        alert('Error');
+                    },
+                    success: function (data) {
+                        alert('Done Check log');
+                        console.log(data.images);
+                    }
+                });
+            });
+        }
+        function viewOneRecords() {
+            $('#viewRecord').click(function () {
+                var id = $('#id').val();
+                var url = "http://localhost/Laravel/Startup/WeWork/Cheaf%20Khalil/videos/interfaces/videos.php";
+                var formData = {'viewRecord':'viewRecord','id':id};
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    dataType: 'JSON',
+                    encode: true,
+                    error: function () {
+                        alert('Error');
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        alert('Done Check log');
+                    }
+                });
+            });
+        }
+        function Upload() {
+            $('#Upload').click(function () {
+                var VideoUrl = $('#VideoUrl')[0].files[0];
+                if(VideoUrl) {
+                    var url_name = VideoUrl.name;
+                    //var url_tmp = VideoUrl.tmp_name;
+                    console.log(VideoUrl);
+                    var url = "http://localhost/laravel/startup/wework/Cheaf%20Khalil/videos/interfaces/videos.php";
+                    var formData = {'Upload': 'Upload', 'url_name': url_name};
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: formData,
+                        dataType: 'JSON',
+                        encode: true,
+                        error: function () {
+                            alert('ok');
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            alert('sad');
+                        }
+                    });
+                }else{
+                    alert('You did not upload any thing yet ! ');
+                }
+            });
+        }
+        Upload();
+        viewOneRecords();
+        viewAllRecords();
+    });
+
+
+</script>
