@@ -1,6 +1,6 @@
 <?php
 require_once '../AutoId.php';
-/*header("Access-Control-Allow-Origin:*", false);*/
+header("Access-Control-Allow-Origin:*");
 $id = create_guid();
 class Videos{
     private $host="localhost";
@@ -24,6 +24,7 @@ class Videos{
             $insert_video_sql ="INSERT INTO `videos`( `id`,`url`) VALUES ('$id','$video_path')";
             $query = mysqli_query($this->con,$insert_video_sql);
             if($query){
+                //Eslam
                 //move_uploaded_file($_FILES['VideoUrl']['tmp_name'],$target_file);
                 return 1;
             }else{

@@ -24,7 +24,7 @@ Upload
         function viewAllRecords() {
             var images=[];
             $('#viewAllRecords').click(function () {
-                var url = "http://localhost/Laravel/Startup/WeWork/Cheaf%20Khalil/videos/interfaces/videos.php";
+                var url = "http://localhost/Laravel/Startup/WeWork/Cheaf%20Khalil/videos/php/interfaces/videos.php";
                 var formData = {'viewAllRecords': 'viewAllRecords'};
                 $.ajax({
                     type: 'POST',
@@ -45,7 +45,7 @@ Upload
         function viewOneRecords() {
             $('#viewRecord').click(function () {
                 var id = $('#id').val();
-                var url = "http://localhost/Laravel/Startup/WeWork/Cheaf%20Khalil/videos/interfaces/videos.php";
+                var url = "http://localhost/Laravel/Startup/WeWork/Cheaf%20Khalil/videos/php/interfaces/videos.php";
                 var formData = {'viewRecord':'viewRecord','id':id};
                 $.ajax({
                     type: 'POST',
@@ -70,7 +70,7 @@ Upload
                     var url_name = VideoUrl.name;
                     //var url_tmp = VideoUrl.tmp_name;
                     console.log(VideoUrl);
-                    var url = "http://localhost/laravel/startup/wework/Cheaf%20Khalil/videos/interfaces/videos.php";
+                    var url = "http://localhost/laravel/startup/wework/Cheaf%20Khalil/videos/php/interfaces/videos.php";
                     var formData = {'Upload': 'Upload', 'url_name': url_name};
                     $.ajax({
                         type: 'POST',
